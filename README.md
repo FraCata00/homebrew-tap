@@ -9,6 +9,7 @@ CPU, GPU, memory, disk, network, fan RPM, temperature, power and battery.
 
 ```sh
 brew tap fracata00/tap
+brew trust fracata00/tap          # Homebrew asks this of every third-party tap
 brew install --cask --no-quarantine glassdeck
 ```
 
