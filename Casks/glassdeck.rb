@@ -27,6 +27,11 @@ cask "glassdeck" do
                    sudo: false
   end
 
+  zap trash: [
+    "~/Library/Caches/dev.fracata00.glassdeck",
+    "~/Library/Preferences/dev.fracata00.glassdeck.plist",
+  ]
+
   caveats do
     <<~EOS
       GlassDeck is signed ad hoc rather than notarised, so this cask cleared the
@@ -35,9 +40,4 @@ cask "glassdeck" do
       GlassDeck has no Dock icon: look for the live meters in the menu bar.
     EOS
   end
-
-  zap trash: [
-    "~/Library/Preferences/dev.fracata00.glassdeck.plist",
-    "~/Library/Caches/dev.fracata00.glassdeck",
-  ]
 end
