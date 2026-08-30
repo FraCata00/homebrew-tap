@@ -17,13 +17,20 @@ cask "glassdeck" do
 
   app "GlassDeck.app"
 
-  # The build is signed ad hoc rather than notarised, so install with
-  # `--no-quarantine` or clear the flag once after installing.
+  # GlassDeck is signed ad hoc rather than notarised, which needs a paid Apple
+  # Developer account. Homebrew 6 removed the `--no-quarantine` install flag, so
+  # the attribute is cleared here instead — the same step the release notes ask
+  # people to run by hand. It is disclosed in the caveats below.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/GlassDeck.app"],
+                   sudo: false
+  end
+
   caveats do
     <<~EOS
-      GlassDeck is signed ad hoc, not notarised. If macOS refuses to open it:
-
-        xattr -dr com.apple.quarantine "#{appdir}/GlassDeck.app"
+      GlassDeck is signed ad hoc rather than notarised, so this cask cleared the
+      quarantine attribute on it during installation.
 
       GlassDeck has no Dock icon: look for the live meters in the menu bar.
     EOS

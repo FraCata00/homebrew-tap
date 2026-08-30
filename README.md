@@ -11,11 +11,14 @@ CPU, GPU, memory, disk, network, fan RPM, temperature, power and battery.
 brew tap fracata00/tap
 brew trust fracata00/tap          # Homebrew asks this of every third-party tap
 brew install --cask glassdeck
-xattr -dr com.apple.quarantine /Applications/GlassDeck.app
 ```
 
-The last line is needed because the build is signed ad hoc rather than notarised.
-(Homebrew 6 removed the `--no-quarantine` install flag, so the attribute is
-cleared afterwards instead.)
+GlassDeck is signed ad hoc rather than notarised — notarising needs a paid Apple
+Developer account — so the cask clears the quarantine attribute during install.
+If you would rather do that yourself, the command is:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/GlassDeck.app
+```
 
 Source and issues: [FraCata00/glassdeck](https://github.com/FraCata00/glassdeck).
