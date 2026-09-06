@@ -2,8 +2,7 @@ cask "glassdeck" do
   version "1.8.1"
   sha256 "a12ff1ff26b833658171f09e1dafe647987f5cea2361fb689c30d13fd6b9c135"
 
-  url "https://github.com/FraCata00/glassdeck/releases/download/v#{version}/GlassDeck.zip",
-      verified: "github.com/FraCata00/glassdeck/"
+  url "https://github.com/FraCata00/glassdeck/releases/download/v#{version}/GlassDeck.zip"
   name "GlassDeck"
   desc "Menu bar system monitor in Liquid Glass with Touch Bar integration"
   homepage "https://github.com/FraCata00/glassdeck"
@@ -21,10 +20,11 @@ cask "glassdeck" do
   # Developer account. Homebrew 6 removed the `--no-quarantine` install flag, so
   # the attribute is cleared here instead — the same step the release notes ask
   # people to run by hand. It is disclosed in the caveats below.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/GlassDeck.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/GlassDeck.app"],
+        writable_paths: ["GlassDeck.app"],
+        writable_base:  :appdir
   end
 
   zap trash: [
