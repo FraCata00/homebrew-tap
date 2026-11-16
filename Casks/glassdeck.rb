@@ -1,6 +1,6 @@
 cask "glassdeck" do
-  version "2.1.1"
-  sha256 "81c75f31f55ba296eccd86b8d6b63f1ec9015329abda7d8cccf1bdccd5f135fc"
+  version "2.1.2"
+  sha256 "3a8c5380f8a33dbefb89bc1bf1c44c37589cb5b51477c4216a2e04cb7024fd74"
 
   url "https://github.com/FraCata00/glassdeck/releases/download/v#{version}/GlassDeck.zip"
   name "GlassDeck"
